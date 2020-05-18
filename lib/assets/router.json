@@ -1,0 +1,43 @@
+  {"list":[
+    {
+      "router_name":"滑动+缩放 过度",
+      "router_widget":"SliderScaleRoute"
+    },
+    {
+      "router_name":"滑动+旋转 过度",
+      "router_widget":"SliderRotationRoute"
+    },
+    {
+      "router_name":"滑动+大小 过度",
+      "router_widget":"SliderSizeRoute"
+    },
+    {
+      "router_name":"缩放+旋转 过度",
+      "router_widget":"ScaleRoationRoute"
+    },
+    {
+      "router_name":"缩放+大小 过度",
+      "router_widget":"ScaleSizeRoute"
+    },
+    {
+      "router_name":"旋转+大小 过度",
+      "router_widget":"RotationSizeRoute"
+    },
+    {
+      "router_name":"渐变+滑动 过度",
+      "router_widget":"FadeSliderRoute"
+    },
+    {
+      "router_name":"渐变+缩放 过度",
+      "router_widget":"FadeScaleRoute"
+    },
+    {
+      "router_name":"渐变+旋转 过度",
+      "router_widget":"FadeRotationRoute"
+    },
+    {
+      "router_name":"渐变+大小 过度",
+      "router_widget":"FadeSizeRoute"
+    }
+  ]
+}
