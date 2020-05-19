@@ -1,16 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:myapp/router/RotationSizeRoute.dart';
-import 'package:myapp/router/fade/FadeRotationRoute.dart';
-import 'package:myapp/router/fade/FadeScaleRoute.dart';
-import 'package:myapp/router/fade/FadeSizeRoute.dart';
-import 'package:myapp/router/fade/FadeSliderRoute.dart';
-import 'package:myapp/router/scale/ScaleRoationRoute.dart';
-import 'package:myapp/router/scale/ScaleSizeRoute.dart';
-import 'package:myapp/router/slider/SliderRotationRoute.dart';
-import 'package:myapp/router/slider/SliderScaleRoute.dart';
-import 'package:myapp/router/slider/SliderSizeRoute.dart';
-import 'douban.dart';
+import 'package:myapp/animation.dart';
+import 'package:myapp/douban.dart';
+import 'package:myapp/filter.dart';
+import 'package:myapp/search_bar_demo.dart';
+import 'package:myapp/warpdemo.dart';
+
 import 'each_view.dart';
 
 
@@ -23,6 +18,16 @@ class _FirstPageState extends State<FirstPage> with SingleTickerProviderStateMix
   List<Widget> _eachView = List();
   TabController _tabController; //需要定义一个Controller
   List tabs = ["新闻", "历史", "图片"];
+  int _counter = 0;
+
+  // @override
+  // bool get wantKeepAlive => true;
+
+  void _incrementControl (){
+    setState(() {
+      _counter++;
+    });
+  }
 
   @override
   void initState(){
@@ -33,6 +38,11 @@ class _FirstPageState extends State<FirstPage> with SingleTickerProviderStateMix
       super.initState();
   }
 
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,76 +60,39 @@ class _FirstPageState extends State<FirstPage> with SingleTickerProviderStateMix
         toolbarOpacity:0.5,
         bottomOpacity:0.8,
         titleSpacing:20.0,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed:(){ Navigator.of(context).push(
+              CupertinoPageRoute(
+                builder: (BuildContext context){
+                  return SearchBarDemo();
+                })
+            );}
+          )
+        ],
         bottom: TabBar(   //生成Tab菜单
           controller: _tabController,
           tabs: tabs.map((e) => Tab(text: e)).toList()
         ),
       ),
-      body: Center(
-        child:Column(
-          children: <Widget>[
-            RaisedButton(
-              child: Text('滑动+缩放 过度'),
-              onPressed: (){
-                Navigator.push(context, SliderScaleRoute(widget:EachView('滑动+缩放过度')));
-              },
-            ),
-            RaisedButton(
-              child: Text('滑动+旋转 过度'),
-              onPressed: (){
-                Navigator.push(context, SliderRotationRoute(widget:EachView('滑动+旋转过度')));
-              },
-            ),
-            RaisedButton(
-              child: Text('滑动+大小 过度'),
-              onPressed: (){
-                Navigator.push(context, SliderSizeRoute(widget:EachView('滑动+大小过度')));
-              },
-            ),
-            RaisedButton(
-              child: Text('缩放+旋转过度'),
-              onPressed: (){
-                Navigator.push(context, ScaleRoationRoute(widget:EachView('缩放+旋转过度')));
-              },
-            ),
-            RaisedButton(
-              child: Text('缩放+大小过度'),
-              onPressed: (){
-                Navigator.push(context, ScaleSizeRoute(widget:EachView('缩放+大小过度')));
-              },
-            ),
-            RaisedButton(
-              child: Text('旋转+大小过度'),
-              onPressed: (){
-                Navigator.push(context, RotationSizeRoute(widget:EachView('旋转+大小过度')));
-              },
-            ),
-            RaisedButton(
-              child: Text('渐变+滑动过度'),
-              onPressed: (){
-                Navigator.push(context, FadeSliderRoute(widget:EachView('渐变+滑动过度')));
-              },
-            ),
-            RaisedButton(
-              child: Text('渐变+缩放过度'),
-              onPressed: (){
-                Navigator.push(context, FadeScaleRoute(widget:EachView('渐变+滑动过度')));
-              },
-            ),
-            RaisedButton(
-              child: Text('渐变+旋转过度'),
-              onPressed: (){
-                Navigator.push(context, FadeRotationRoute(widget:EachView('渐变+滑动过度')));
-              },
-            ),
-            RaisedButton(
-              child: Text('渐变+大小过度'),
-              onPressed: (){
-                Navigator.push(context, FadeSizeRoute(widget:EachView('渐变+大小过度')));
-              },
-            ),
-          ],
-        )
+      body: TabBarView(
+        controller: _tabController,
+        children: tabs.map((e){
+
+          return Container(
+            alignment: Alignment.center,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Text(e,textScaleFactor: 5),
+                Text('$_counter',textScaleFactor: 5),
+                
+              ],
+            )
+          );
+        }).toList(),
       ),
       bottomNavigationBar: BottomAppBar(
          color: Colors.blue,
@@ -133,7 +106,9 @@ class _FirstPageState extends State<FirstPage> with SingleTickerProviderStateMix
                icon: Icon(Icons.airplay),
                color: Colors.white,
                onPressed: (){
-                  Navigator.push(context, FadeRotationRoute(widget:EachView('滑动过度')));
+                  Navigator.of(context).push(CupertinoPageRoute(builder: (BuildContext context){
+                   return AnimationDemo();
+                 }));
                },
              ),
              IconButton(
@@ -141,57 +116,32 @@ class _FirstPageState extends State<FirstPage> with SingleTickerProviderStateMix
                color: Colors.white,
                onPressed: (){
                  Navigator.of(context).push(CupertinoPageRoute(builder: (BuildContext context){
-                   return EachView('home');
+                   return FrostedDemo();
                  }));
                },
              ),
+             IconButton(
+               icon: Icon(Icons.access_alarm),
+               color: Colors.white,
+               onPressed: (){
+                 Navigator.of(context).push(CupertinoPageRoute(builder: (BuildContext context){
+                   return WarpDemo();
+                 }));
+               },
+             )
            ],
          ),
        ),
-       floatingActionButtonLocation:FloatingActionButtonLocation.centerDocked,
+       floatingActionButtonLocation:FloatingActionButtonLocation.endFloat,
        floatingActionButton: FloatingActionButton(
          tooltip:'长按',
          onPressed: (){
-           Navigator.of(context).push(MaterialPageRoute(builder:(BuildContext context){
-             return EachView('home');
-           }));
+           _incrementControl();
          },
          child: Icon(
            Icons.plus_one
          ),
        ),
-    );
-  }
-}
-
-class SecondPage extends StatefulWidget {
-  @override
-  _SecondPageState createState() => _SecondPageState();
-}
-
-class _SecondPageState extends State<SecondPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.pinkAccent,
-      appBar: AppBar(
-        title:Text(
-          'SecondPage',
-          style:TextStyle(fontSize: 36.0)
-        ),
-        backgroundColor: Colors.pinkAccent,
-        elevation: 3.0,
-        leading:Container(),
-      ),
-      body: Center(
-        child: MaterialButton(
-          child: Icon(Icons.navigate_before,color: Colors.white,size: 64.0,),
-          onPressed: (){
-            Navigator.of(context).pop();
-          },
-        )
-      ),
-      
     );
   }
 }
