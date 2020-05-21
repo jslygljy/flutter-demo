@@ -4,6 +4,8 @@ import 'package:myapp/animation.dart';
 import 'package:myapp/douban.dart';
 import 'package:myapp/filter.dart';
 import 'package:myapp/search_bar_demo.dart';
+import 'package:myapp/service/serveice_method.dart';
+import 'package:myapp/swiper.dart';
 import 'package:myapp/warpdemo.dart';
 
 import 'each_view.dart';
@@ -76,24 +78,24 @@ class _FirstPageState extends State<FirstPage> with SingleTickerProviderStateMix
           tabs: tabs.map((e) => Tab(text: e)).toList()
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: tabs.map((e){
-
-          return Container(
-            alignment: Alignment.center,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text(e,textScaleFactor: 5),
-                Text('$_counter',textScaleFactor: 5),
-                
-              ],
-            )
-          );
-        }).toList(),
-      ),
+      body:
+          TabBarView(
+            controller: _tabController,
+            children: tabs.map((e){
+              return Container(
+                alignment: Alignment.center,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text(e,textScaleFactor: 5),
+                    Text('$_counter',textScaleFactor: 5),
+                    
+                  ],
+                )
+              );
+            }).toList(),
+          ),
       bottomNavigationBar: BottomAppBar(
          color: Colors.blue,
          shape: CircularNotchedRectangle(
@@ -121,6 +123,15 @@ class _FirstPageState extends State<FirstPage> with SingleTickerProviderStateMix
                },
              ),
              IconButton(
+               icon: Icon(Icons.accessibility),
+               color: Colors.white,
+               onPressed: (){
+                 Navigator.of(context).push(CupertinoPageRoute(builder: (BuildContext context){
+                   return SwiperDemo();
+                 }));
+               },
+             ),
+             IconButton(
                icon: Icon(Icons.access_alarm),
                color: Colors.white,
                onPressed: (){
@@ -136,7 +147,8 @@ class _FirstPageState extends State<FirstPage> with SingleTickerProviderStateMix
        floatingActionButton: FloatingActionButton(
          tooltip:'长按',
          onPressed: (){
-           _incrementControl();
+          //  _incrementControl();
+           getHomePageContent();
          },
          child: Icon(
            Icons.plus_one
