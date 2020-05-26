@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:myapp/animation.dart';
 import 'package:myapp/douban.dart';
 import 'package:myapp/filter.dart';
+import 'package:myapp/home_page.dart';
 import 'package:myapp/search_bar_demo.dart';
 import 'package:myapp/service/serveice_method.dart';
 import 'package:myapp/swiper.dart';
 import 'package:myapp/warpdemo.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'each_view.dart';
 
 
@@ -47,6 +48,7 @@ class _FirstPageState extends State<FirstPage> with SingleTickerProviderStateMix
   }
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, width: 750, height: 1334);
     return Scaffold(
       backgroundColor: Colors.blue,
       appBar: AppBar(
@@ -127,7 +129,7 @@ class _FirstPageState extends State<FirstPage> with SingleTickerProviderStateMix
                color: Colors.white,
                onPressed: (){
                  Navigator.of(context).push(CupertinoPageRoute(builder: (BuildContext context){
-                   return SwiperDemo();
+                   return HomePage();
                  }));
                },
              ),
@@ -147,8 +149,8 @@ class _FirstPageState extends State<FirstPage> with SingleTickerProviderStateMix
        floatingActionButton: FloatingActionButton(
          tooltip:'长按',
          onPressed: (){
-          //  _incrementControl();
-           getHomePageContent();
+           _incrementControl();
+          //  getHomePageContent();
          },
          child: Icon(
            Icons.plus_one

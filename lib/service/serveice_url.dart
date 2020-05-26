@@ -1,5 +1,4 @@
-const serveiceUrl = 'https://www.easy-mock.com/mock/598289aea1d30433d851504e/example';
+const serveiceUrl = 'https://www.fastmock.site/mock/85d77e91310112ce0a12e4301f45fc22/api';
 const servicePath = {
-  'homePageContent':serveiceUrl+'/home',
-  'mockPageContent':serveiceUrl+'/mock'
+  'homePageContent':serveiceUrl+ '/api/home',
 };

@@ -3,22 +3,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class SwiperDemo extends StatelessWidget {
+  final List swiperList;
+  const SwiperDemo({Key key, this.swiperList}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
-     ScreenUtil.init(context, width: 750, height: 1334);
-    return Scaffold(
-      body: Container(
-        width:750,
-        height:ScreenUtil().setHeight(300),
+    return  Container(
+        width: 750,
+        height:ScreenUtil().setHeight(333),
         child: Swiper(
           itemBuilder: (BuildContext context,int index){
-            return new Image.network("http://via.placeholder.com/750x350",fit:BoxFit.fill);
+            return new Image.network("${swiperList[index]}",fit:BoxFit.fill);
           },
-          itemCount: 3,
+          itemCount: swiperList.length,
           pagination: new SwiperPagination(),
           control: new SwiperControl(),
         )
-      ),
     );
   }
 }

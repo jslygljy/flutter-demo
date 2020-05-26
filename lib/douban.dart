@@ -31,7 +31,7 @@ class _DoubanTheatersWidgetState extends State<DoubanTheatersWidget> {
   }
 
   Future<String> _loadAStudentAsset() async {
-    return await DefaultAssetBundle.of(context).loadString('lib/assets/router.json');
+    return await DefaultAssetBundle.of(context).loadString('lib/json/router.json');
   }
 
   loadData() async {
