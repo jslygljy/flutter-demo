@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/animation.dart';
-import 'package:myapp/douban.dart';
 import 'package:myapp/filter.dart';
 import 'package:myapp/home_page.dart';
 import 'package:myapp/search_bar_demo.dart';
-import 'package:myapp/service/serveice_method.dart';
-import 'package:myapp/swiper.dart';
 import 'package:myapp/warpdemo.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'each_view.dart';

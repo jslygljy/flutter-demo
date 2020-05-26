@@ -1,5 +1,15 @@
 # myapp
 
+# 主要功能包括
+* listViewBar
+* bottomNavigationBar
+* 过场动画
+* 图片模糊
+* 电商首页
+* warp列表
+* 搜索栏
+* json序列号以及自适应适配
+
 A new Flutter project.
 
 ## Getting Started
