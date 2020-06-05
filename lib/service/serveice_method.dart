@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:myapp/model/home.dart';
+import 'package:myapp/model/list.dart';
 import 'package:myapp/service/serveice_url.dart';
 
 
@@ -23,11 +24,21 @@ Future getHomePageContent() async{
 } 
 
 // 获取mock内容
-Future getMockPageContent() async{
+Future getList({formData}) async{
     try{
       Dio dio = new Dio();
-      Response response = await dio.get(servicePath['homePageContent']);
-      print(response);
+      Response response;
+      if(formData==null){
+        response = await dio.post(servicePath['homelistContent']);
+      }else{
+        response = await dio.post(servicePath['homelistContent'],data:formData);
+      }
+      if(response.statusCode==200){
+        var result = json.decode(response.toString());
+        return result['data'];
+      }else{
+        throw Exception('接口错误');
+      }
     }catch(e){
       print(e);
     }

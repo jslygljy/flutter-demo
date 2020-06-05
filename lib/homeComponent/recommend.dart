@@ -13,7 +13,7 @@ class RecomendDemo extends StatelessWidget {
       decoration: BoxDecoration(
         color:Colors.white,
         border:Border(
-          bottom: BorderSide(width: 0.5,color: Colors.black12)
+          bottom: BorderSide(width: 1,color: Colors.black12)
         )
       ),
       child: Text(
@@ -72,14 +72,16 @@ class RecomendDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: ScreenUtil().setHeight(330),
+      height: ScreenUtil().setHeight(400),
       margin: EdgeInsets.only(top:8.0),
-      child: Column(
-          children: <Widget>[
-            _titleWidget(),
-            _rowList()
-          ],
-      ),
+      child: SingleChildScrollView(
+        child: Column(
+            children: <Widget>[
+              _titleWidget(),
+              _rowList()
+            ],
+        )
+      )
     );
   }
 }
