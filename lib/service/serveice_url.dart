@@ -2,5 +2,5 @@ const serveiceUrl = 'https://www.fastmock.site/mock/85d77e91310112ce0a12e4301f45
 const servicePath = {
   'homePageContent':serveiceUrl+ '/api/home',
   'homelistContent':serveiceUrl+ '/api/list',
-  
+  'categorylistContent':serveiceUrl+ '/api/categoryList',
 };

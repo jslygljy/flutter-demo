@@ -45,7 +45,6 @@ class _FirstPageState extends State<FirstPage> with SingleTickerProviderStateMix
   }
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, width: 750, height: 1334);
     return Scaffold(
       backgroundColor: Colors.blue,
       appBar: AppBar(

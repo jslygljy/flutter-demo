@@ -50,11 +50,11 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
                       RecomendDemo(recommendList:snapshot.data.recommendList),
                       FloorContent(),
                       LikeButton(width: 50),
-                      HotGoodsList()
+                      HotGoodsList(key: childKey)
                     ]
                   ),
                   onLoad: () async{
-                    print('123');
+                    childKey.currentState.getHotGoods();
                   },
                   footer: MaterialFooter(
                       

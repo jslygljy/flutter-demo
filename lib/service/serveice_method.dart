@@ -43,4 +43,25 @@ Future getList({formData}) async{
       print(e);
     }
 } 
+// 获取mock内容
+Future getCateGoryList({formData}) async{
+    try{
+      Dio dio = new Dio();
+      Response response;
+      if(formData==null){
+        response = await dio.post(servicePath['categorylistContent']);
+      }else{
+        response = await dio.post(servicePath['categorylistContent'],data:formData);
+      }
+      if(response.statusCode==200){
+        var result = json.decode(response.toString());
+        return result;
+      }else{
+        throw Exception('接口错误');
+      }
+    }catch(e){
+      print(e);
+    }
+} 
+
 
