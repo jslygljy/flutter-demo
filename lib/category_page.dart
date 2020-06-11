@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:myapp/model/category.dart';
 import 'package:myapp/service/serveice_method.dart';
+import 'package:provider/provider.dart';
+
+import 'provide/counter.dart';
 
 class Category_page extends StatefulWidget {
   @override
@@ -34,16 +37,16 @@ class _Category_pageState extends State<Category_page> {
         child: ListView.builder(
         itemCount: categorylist.length,
         itemBuilder: (context,index){
-          return _leftInkell(index);
+          return _leftInkell(index,context);
         },
         )
       )
     );
   }
 
-  Widget _leftInkell(int index){
+  Widget _leftInkell(int index,BuildContext context){
     return InkWell(
-      onTap: (){},
+      onTap: () => context.read<Counter>().increment(),
       child: Container(
         height: ScreenUtil().setHeight(100),
         padding: EdgeInsets.only(top:20,left:10),
@@ -54,7 +57,7 @@ class _Category_pageState extends State<Category_page> {
           )
         ),
         child: Text(
-          categorylist[index].name,
+          '${categorylist[index].name}+${context.watch<Counter>().value}',
           style: TextStyle(
             fontSize: ScreenUtil().setSp(28),
 
